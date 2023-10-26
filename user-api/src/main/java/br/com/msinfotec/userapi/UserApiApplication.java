@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import br.com.msinfotec.userapi.domain.User;
 import br.com.msinfotec.userapi.repositories.UserRepository;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class UserApiApplication implements CommandLineRunner {
 
 	@Autowired
