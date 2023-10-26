@@ -17,7 +17,4 @@ public interface UserFeign {
 	
 	@GetMapping
 	ResponseEntity<List<User>> findAll();
-	
-	
-
 }
