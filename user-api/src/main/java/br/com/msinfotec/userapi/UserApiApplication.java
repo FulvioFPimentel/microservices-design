@@ -13,14 +13,17 @@ import br.com.msinfotec.userapi.repositories.UserRepository;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class UserApiApplication implements CommandLineRunner {
+public class UserApiApplication implements CommandLineRunner  {
+	
 
 	@Autowired
 	private UserRepository userRepository;
+
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UserApiApplication.class, args);
 	}
+
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -32,5 +35,6 @@ public class UserApiApplication implements CommandLineRunner {
 				));
 		
 	}
+
 
 }
