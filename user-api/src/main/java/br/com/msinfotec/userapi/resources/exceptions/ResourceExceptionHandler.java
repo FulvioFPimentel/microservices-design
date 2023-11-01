@@ -18,10 +18,10 @@ public class ResourceExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
 				new StandardError(
-						LocalDateTime.now(),
-						ex.getMessage(),
-						HttpStatus.NOT_FOUND.value(),
-						request.getRequestURI())
+					LocalDateTime.now(),
+					ex.getMessage(),
+					HttpStatus.NOT_FOUND.value(),
+					request.getRequestURI())
 				);
 		
 	 }

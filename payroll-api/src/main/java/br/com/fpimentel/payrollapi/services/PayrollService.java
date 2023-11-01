@@ -35,7 +35,7 @@ public class PayrollService {
 			}
 			
 		} catch(FeignException.NotFound ex) {
-			throw  new ObjectNotFoundException("Object not found");
+			throw new ObjectNotFoundException("Object not found");
 		} catch(Exception ex) {
 			throw new IllegalArgumentException("Illegal argument exception");
 		}

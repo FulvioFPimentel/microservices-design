@@ -7,6 +7,7 @@ import br.com.msinfotec.userapi.domain.User;
 public interface UserService {
 	
 	User findById(Long id);
+	
 	List<User> findall();
 
 }

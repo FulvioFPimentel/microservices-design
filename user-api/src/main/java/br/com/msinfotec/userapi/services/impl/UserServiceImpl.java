@@ -1,4 +1,4 @@
-package br.com.msinfotec.userapi.services.impl;
+	package br.com.msinfotec.userapi.services.impl;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	private final UserRepository repository;
 	private final Environment env;
