@@ -19,11 +19,9 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public Client Save(Client client) {
-		
-		System.out.println(client.getName());
 	
 		if(parameterNotNull(client)) {
-			throw new ObjectNotFoundException("Campos de preenchimento obrigatorio!");
+			throw new ObjectNotFoundException("Required fields!");
 		}
 		
 		Client cli = repository.save(client);
