@@ -10,7 +10,7 @@ public class Payroll {
 	
 	private String workerName;
 	private String description;
-	private Double hourlyPrice;
+	private Double hourlyPrice; 
 	private Double workerHours;
 	private Double totalPayment;
 
