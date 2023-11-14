@@ -10,6 +10,8 @@ public interface ProductService {
 	
 	List<Product> findAll();
 	
-	List<Product> purchaseUpdate(List<Product> prod);
-
+	List<Product> orderUpdate(List<Product> prod);
+	
+	List<Product> findAllById(List<Product> prod);
+	
 }

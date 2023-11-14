@@ -2,7 +2,6 @@ package br.com.fpimentel.orderapi.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -30,15 +29,17 @@ public class Order {
 	
 	@Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String userName;
+	private String userEmail;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "client_id", referencedColumnName = "id")
 	private Client client;
+	private Double TotalProduct;
 	
-	@OneToMany(mappedBy = "order")
+	@OneToMany
 	private List<Product> product = new ArrayList<>();
-	
+		
 }

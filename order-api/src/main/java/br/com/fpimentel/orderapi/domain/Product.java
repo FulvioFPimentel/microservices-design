@@ -1,9 +1,10 @@
 package br.com.fpimentel.orderapi.domain;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -22,6 +23,7 @@ public class Product {
 	
 	@Include
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	private Long id;
 	
 	private String product;
@@ -29,16 +31,6 @@ public class Product {
 	private String manufacturer;
 	private Double productValue;
 	private Integer quantity;
-	
-	private Double totalValue;
-	
-	@ManyToOne
-	@JoinColumn(name = "order_id")
-	private Order order;
-	
-	public Double getTotalValue() {
-		totalValue = productValue * quantity;
-		return totalValue;
-	}
+	private Double total;
 
 }

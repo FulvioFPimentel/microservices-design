@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: order-api
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
   h2:
     console:
       enabled: true

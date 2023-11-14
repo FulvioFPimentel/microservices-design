@@ -8,10 +8,9 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class ProductsOrder {
 	
 	private Long id;
-	private String name;
-	private String email;
-	
+	private Integer quantity;
+
 }

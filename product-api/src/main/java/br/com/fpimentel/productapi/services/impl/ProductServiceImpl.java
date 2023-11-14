@@ -29,8 +29,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> purchaseUpdate(List<Product> prod) {
-		
+	public List<Product> orderUpdate(List<Product> prod) {
 		List<Product> product = new ArrayList<>();
 		
 		for (Product p : prod) {
@@ -39,29 +38,21 @@ public class ProductServiceImpl implements ProductService {
 			if(prodUp.getQuantity() < p.getQuantity()) {
 				throw new InsufficientStockException("Insufficient product in stock");				
 			} else {
-				
-				if (prodUp.getQuantity().equals(0)) {
+				Integer quantityUp = prodUp.getQuantity() - p.getQuantity();
+				if(quantityUp.equals(0)) {
+					prodUp.setStatus(StateEnum.UNAVAILABLE);
+					prodUp.setQuantity(quantityUp);
 					repository.save(prodUp);
-										
 				} else {
-					Integer quantityUp = prodUp.getQuantity() - p.getQuantity();
-					
-					if(quantityUp.equals(0)) {
-						prodUp.setStatus(StateEnum.UNAVAILABLE);
-						prodUp.setQuantity(quantityUp);
-						repository.save(prodUp);
-					} else {
-						prodUp.setQuantity(quantityUp);
-						repository.save(prodUp);
-					}					
-				}
+					prodUp.setQuantity(quantityUp);
+					repository.save(prodUp);
+				}					
 			}
 			product.add(productResponse(p, prodUp));
 		}
 		return product;
 	}
 	
-
 	public Product productResponse(Product prodQuantity, Product prod) {
 		Product p = new Product();
 		
@@ -74,7 +65,17 @@ public class ProductServiceImpl implements ProductService {
 		p.setStatus(prod.getStatus());
 		return p;
 	}
+
+	@Override
+	public List<Product> findAllById(List<Product> prod) {
 	
+		List<Product> product = new ArrayList<>();
+		for(Product p : prod) {
+			Product getProd = repository.findById(p.getId()).orElse(p);
+			product.add(getProd);
+		}
+		return product;
+	}
 }
 
 

@@ -19,6 +19,8 @@ public interface ProductResource {
 	ResponseEntity<List<Product>> findAll();
 	
 	@PutMapping(value = "/purchased")
-	ResponseEntity<List<Product>> purchaseUpdate(@RequestBody List<Product> prod);
-
+	ResponseEntity<List<Product>> orderUpdate(@RequestBody List<Product> prod);
+	
+	@GetMapping(value = "/purchased")
+	ResponseEntity<List<Product>> findAllById(@RequestBody List<Product> prod);
 }

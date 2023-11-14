@@ -33,10 +33,17 @@ public class ProductResourceImpl implements ProductResource {
 	}
 
 	@Override
-	public ResponseEntity<List<Product>> purchaseUpdate(List<Product> prod) {
-			List<Product> prodUp = service.purchaseUpdate(prod);
-		return ResponseEntity.status(HttpStatus.UPGRADE_REQUIRED).body(prodUp);
+	public ResponseEntity<List<Product>> orderUpdate(List<Product> prod) {
+			List<Product> prodUp = service.orderUpdate(prod);
+		return ResponseEntity.ok().body(prodUp);
 		
-		}	
+	}
+
+	@Override
+	public ResponseEntity<List<Product>> findAllById(List<Product> prod) {
+		List<Product> prodUp = service.findAllById(prod);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(prodUp); 
+	}
+
 	}
 

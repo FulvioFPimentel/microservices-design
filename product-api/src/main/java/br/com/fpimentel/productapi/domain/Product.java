@@ -29,6 +29,7 @@ public class Product {
 	private String product;
 	private String model;
 	private String manufacturer;
+	
 	private Double productValue;
 	private Integer quantity;
 	private StateEnum status;
