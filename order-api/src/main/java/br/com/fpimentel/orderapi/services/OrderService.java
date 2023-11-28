@@ -9,6 +9,7 @@ import br.com.fpimentel.orderapi.domain.Client;
 import br.com.fpimentel.orderapi.domain.Order;
 import br.com.fpimentel.orderapi.domain.Product;
 import br.com.fpimentel.orderapi.domain.ProductsOrder;
+import br.com.fpimentel.orderapi.domain.User;
 import br.com.fpimentel.orderapi.feignClients.ClientFeign;
 import br.com.fpimentel.orderapi.feignClients.ProductFeign;
 import br.com.fpimentel.orderapi.feignClients.UserFeign;
@@ -26,9 +27,9 @@ public class OrderService {
 	
 	public Order getOrder(Long userId, Long clientId, List<ProductsOrder> products) {
 		try {
-			var user = userFeign.userFindById(userId).getBody();
-			var client = clientFeign.clientFindById(clientId).getBody();		
-			var product = productFeign.getProducts(products).getBody();
+			User user = userFeign.userFindById(userId).getBody();
+			Client client = clientFeign.clientFindById(clientId).getBody();		
+			List<Product> product = productFeign.getProducts(products).getBody();
 			List<Product> prod = new ArrayList<>();
 						
 			product.forEach(a -> prod.add(new Product(
@@ -36,7 +37,6 @@ public class OrderService {
 					a.getManufacturer(), a.getProductValue(),
 					a.getQuantity(), a.getProductValue() * a.getQuantity())));
 			
-							
 			return new Order(
 					user.getId(),
 					user.getName(),
@@ -44,7 +44,7 @@ public class OrderService {
 					new Client(client.getId(), client.getName(), 
 							client.getAddress(), client.getEmail(), 
 							client.getCellNumber(), client.getOrder()), 
-					getTotalvalue(prod)
+					getTotalValue(prod)
 					, prod
 					);
 			
@@ -53,9 +53,9 @@ public class OrderService {
 		}	
 	}
 	
-	public Double getTotalvalue(List<Product> prod) {
+	public Double getTotalValue(List<Product> prod) {
 		Double total = 0.0;
-		
+				
 		for(Product p : prod) {
 			total += p.getTotal();
 		}

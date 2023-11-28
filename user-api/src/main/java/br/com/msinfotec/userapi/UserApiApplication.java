@@ -1,6 +1,7 @@
 package br.com.msinfotec.userapi;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import br.com.msinfotec.userapi.domain.User;
+import br.com.msinfotec.userapi.domain.UserRole;
 import br.com.msinfotec.userapi.repositories.UserRepository;
 
 @SpringBootApplication
@@ -27,14 +29,20 @@ public class UserApiApplication implements CommandLineRunner  {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		
 		userRepository.saveAll(List.of(
-				new User(null, "Fulvio Pimentel", "fulviofp@hotmail.com", "123", 50.0),
-				new User(null, "Felipe Pimentel", "felipe@hotmail.com", "123", 50.0),
-				new User(null, "Fernando Pimentel", "fernando@hotmail.com", "123", 50.0),
-				new User(null, "Fabio Pimentel", "fabio@hotmail.com", "123", 50.0)
+				new User(null, "Fulvio Pimentel", "fulviofp@hotmail.com", "123", Set.of(UserRole.USER, UserRole.ADMIN), 50.0),
+				new User(null, "Felipe Pimentel", "felipe@hotmail.com", "123", Set.of(UserRole.USER), 50.0),
+				new User(null, "Fernando Pimentel", "fernando@hotmail.com", "123", Set.of(UserRole.USER, UserRole.ADMIN), 50.0),
+				new User(null, "Fabio Pimentel", "fabio@hotmail.com", "123", Set.of(UserRole.USER), 50.0)
 				));
 		
 	}
+	
+	
+
+
 
 
 }

@@ -3,6 +3,7 @@ package br.com.fpimentel.productapi.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import br.com.fpimentel.productapi.domain.Product;
@@ -54,16 +55,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	public Product productResponse(Product prodQuantity, Product prod) {
-		Product p = new Product();
+		Product product = new Product();
+		ModelMapper model =  new ModelMapper();
 		
-		p.setId(prod.getId());
-		p.setProduct(prod.getProduct());
-		p.setModel(prod.getModel());
-		p.setManufacturer(prod.getManufacturer());
-		p.setProductValue(prod.getProductValue());
-		p.setQuantity(prodQuantity.getQuantity());
-		p.setStatus(prod.getStatus());
-		return p;
+		model.map(prod, product);
+		product.setQuantity(prodQuantity.getQuantity());
+		
+		return product;
 	}
 
 	@Override
