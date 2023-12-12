@@ -10,5 +10,5 @@ import br.com.msinfotec.userapi.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 	UserDetails findByEmail(String email);
-
+	
 }

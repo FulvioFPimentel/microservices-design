@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.msinfotec.userapi.domain.User;
+import br.com.msinfotec.userapi.domain.DTO.UserDTO;
 import br.com.msinfotec.userapi.resources.UserResource;
 import br.com.msinfotec.userapi.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class UserResourceImpl implements UserResource {
 	} 
 	
 	@Override
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<UserDTO>> findAll() {
 		return ResponseEntity.ok().body(service.findall());
 	}
 

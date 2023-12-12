@@ -36,13 +36,20 @@ public class User implements UserDetails {
 	private String name;
 	private String email;
 	private String password;
-	private Set<UserRole> role = new HashSet<>();
+	private Set<UserRole> roles = new HashSet<>();
 	private Double hourlyPrice;
 	
+	public User(String name, String email, String password, Set<UserRole> roles, Double hourlyPrice){
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		roles.forEach(role -> this.roles.add(role));
+		this.hourlyPrice = hourlyPrice;
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return role.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
 	}
 	
 	@Override

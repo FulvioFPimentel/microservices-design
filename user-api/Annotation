@@ -1,0 +1,4 @@
+.authorizeHttpRequests(authorize -> authorize
+					.requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
+					.anyRequest().authenticated()
+					)

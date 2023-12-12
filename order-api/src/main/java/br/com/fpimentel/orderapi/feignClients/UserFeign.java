@@ -10,7 +10,7 @@ import br.com.fpimentel.orderapi.domain.User;
 @FeignClient(name = "user-api")
 public interface UserFeign {
 	
-	@GetMapping(value = "/api/users/{id}")
+	@GetMapping(value = "/api/users/user/{id}")
 	ResponseEntity<User> userFindById(@PathVariable Long id);
 
 }
